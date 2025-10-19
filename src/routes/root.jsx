@@ -1,9 +1,13 @@
 import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function Root() {
   return (
-    <main className="max-w-7xl mx-auto px-4">
-      <Outlet />
-    </main>
+    <>
+      <Header />
+      <main className="max-w-7xl mx-auto px-4">
+        <Outlet />
+      </main>
+    </>
   );
 }
