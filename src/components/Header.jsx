@@ -1,6 +1,34 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getProducts } from "../api/products";
 
-export default function Header() {
+export default function Header({ setFilteredProducts, setSearchQuery }) {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    setSearchQuery(value);
+  };
+
+  useEffect(() => {
+    const fetchSearchProducts = async () => {
+      if (inputValue.trim() === "") {
+        setFilteredProducts([]);
+
+        return;
+      }
+      try {
+        const data = await getProducts(10, 0, inputValue);
+        setFilteredProducts(data.products);
+      } catch (err) {
+        console.error("Search error:", err);
+        setFilteredProducts([]);
+      }
+    };
+
+    fetchSearchProducts();
+  }, [inputValue]);
   return (
     <header className="w-full bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
@@ -40,6 +68,8 @@ export default function Header() {
               </div>
               <input
                 type="search"
+                value={inputValue}
+                onChange={handleChange}
                 placeholder="Search"
                 className="block  p-4 ps-10 text-sm  border  rounded-lg bg-primary shadow-lg border-gray-200"
               />
