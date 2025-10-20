@@ -2,20 +2,25 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getProducts } from "../api/products";
 
-export default function Header({ setFilteredProducts, setSearchQuery }) {
+export default function Header({
+  setFilteredProducts,
+  setSearchQuery,
+  setPage,
+}) {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
     setSearchQuery(value);
+    setPage(0);
   };
 
   useEffect(() => {
     const fetchSearchProducts = async () => {
       if (inputValue.trim() === "") {
         setFilteredProducts([]);
-
+        setPage(0);
         return;
       }
       try {
