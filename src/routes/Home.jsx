@@ -13,7 +13,8 @@ export async function loader() {
 export default function Home() {
   const { products: initialProducts } = useLoaderData();
 
-  const { filteredProducts, searchQuery, page, setPage } = useOutletContext();
+  const { filteredProducts, searchQuery, page, setPage, cart, setCart } =
+    useOutletContext();
 
   const [products, setProducts] = useState(initialProducts || []);
   const [limit] = useState(10);
@@ -21,6 +22,22 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
 
   const list = searchQuery ? filteredProducts : products;
+
+  const addToCart = (product) => {
+    setCart((prev) => {
+      const existingItem = prev.find((item) => item.id === product.id);
+
+      if (existingItem) {
+        return prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+      return [...prev, { ...product, quantity: 1 }];
+    });
+  };
 
   const fetchData = async (pageNum = page) => {
     setIsLoading(true);
@@ -55,7 +72,7 @@ export default function Home() {
                 key={product.id}
                 className="flex-none w-1/3 md:w-1/4 lg:w-1/5 p-2"
               >
-                <ProductCard product={product} />
+                <ProductCard product={product} addToCart={addToCart} />
               </div>
             ))
           ) : (
