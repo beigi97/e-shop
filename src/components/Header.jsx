@@ -44,18 +44,24 @@ export default function Header({
   return (
     <header className="w-full bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
-        <h1 className="text-2xl font-bold text-blue-600 cursor-pointer">
+        <h1 className="text-2xl font-bold text-blue-600 cursor-pointer pl-6 font-Inter">
           MyShop
         </h1>
 
         <nav className="hidden md:flex space-x-6 font-medium">
-          <Link to="/" className="hover:text-blue-500 transition">
+          <Link to="/" className="hover:text-blue-500 transition font-Inter">
             Home
           </Link>
-          <Link to="/About" className="hover:text-blue-500 transition">
+          <Link
+            to="/About"
+            className="hover:text-blue-500 transition font-Inter"
+          >
             About
           </Link>
-          <Link to="/contact" className="hover:text-blue-500 transition">
+          <Link
+            to="/contact"
+            className="hover:text-blue-500 transition font-Inter"
+          >
             Contact
           </Link>
         </nav>
@@ -119,10 +125,12 @@ export default function Header({
                 className="fixed inset-0 bg-black/30 z-40"
               ></div>
               <div className="absolute right-0 top-0 mt-3 w-72 bg-white border rounded-xl shadow-lg p-4 z-50">
-                <h3 className="font-bold mb-2">سبد خرید</h3>
+                <h3 className="font-bold mb-2 font-Inter">سبد خرید</h3>
 
                 {cart.length === 0 ? (
-                  <p className="text-gray-500 text-sm">سبد خالی است</p>
+                  <p className="text-gray-500 text-sm font-Inter">
+                    سبد خالی است
+                  </p>
                 ) : (
                   <ul className="space-y-2 max-h-60 overflow-y-auto">
                     {cart.map((item) => (
@@ -137,7 +145,7 @@ export default function Header({
                         />
 
                         <div className="flex-1">
-                          <p className="text-sm font-semibold line-clamp-1">
+                          <p className="text-sm font-semibold line-clamp-1 font-Inter">
                             {item.title}
                           </p>
                           <p className="text-xs text-gray-500">
@@ -150,7 +158,7 @@ export default function Header({
                         </span>
                         <button
                           onClick={() => removeFromCart(item.id)}
-                          className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition"
+                          className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition font-Inter"
                         >
                           حذف
                         </button>
@@ -159,7 +167,7 @@ export default function Header({
                   </ul>
                 )}
 
-                <button className="mt-3 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+                <button className="mt-3 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition font-Inter">
                   ادامه خرید
                 </button>
               </div>

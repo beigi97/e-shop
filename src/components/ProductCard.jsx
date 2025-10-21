@@ -6,13 +6,13 @@ export default function ProductCard({ product, addToCart }) {
         alt={product.title}
         className="w-32 h-32 object-contain mb-3"
       />
-      <h3 className="text-sm font-semibold text-gray-700 text-center line-clamp-2">
+      <h3 className="text-sm font-semibold text-gray-700 text-center line-clamp-2 font-Inter">
         {product.title}
       </h3>
       <p className="text-blue-600 font-bold my-2">${product.price}</p>
       <button
         onClick={() => addToCart(product)}
-        className=" text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition bg-blue-500  "
+        className=" text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition bg-blue-500 font-Inter "
       >
         Add to cart
       </button>
