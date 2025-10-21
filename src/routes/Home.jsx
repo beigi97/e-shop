@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { useOutletContext } from "react-router-dom";
 import { Spinner } from "flowbite-react";
+import Banner from "../components/Banner";
 
 export async function loader() {
   const products = await getProducts();
@@ -59,6 +60,13 @@ export default function Home() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
+      <div className="bg-blue-50 text-center py-4 mb-7">
+        <p className="text-blue-600 font-semibold text-lg font-Inter">
+          🌟The latest products at the best prices!
+        </p>
+      </div>
+
+      <Banner />
       {isLoading ? (
         <div className="text-center">
           <Spinner aria-label="Center-aligned spinner example" />
@@ -76,7 +84,7 @@ export default function Home() {
               </div>
             ))
           ) : (
-            <p className="text-gray-400 text-center w-full mt-4">
+            <p className="text-gray-400 text-center w-full mt-4 font-Inter">
               نتیجه‌ای یافت نشد 😔
             </p>
           )}

@@ -7,6 +7,9 @@ export default {
       colors: {
         primary: "#F9F9F9",
       },
+      fontFamily: {
+        Inter: ["Inter", "sans-serif"],
+      },
     },
   },
   plugins: [flowbite.plugin()],
