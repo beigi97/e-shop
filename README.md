@@ -1,12 +1,44 @@
-# React + Vite
+# React Products App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple web application for displaying products, managing shopping carts, and searching that uses the DummyJSON site API.
 
-Currently, two official plugins are available:
+> `https://dummyjson.com/products‍‍‍‍‍‍‍‍‍‍`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+##### Features:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Display product list from API
+- Pagination
+- Product search
+- Cart with option to delete and display number of items
+- Header includes:
+- Navigation links (Home, About, Contact)
+- Logo
+- Shopping cart icon + number of products
+- Error page (`ErrorPage`) for wrong paths and links
+- About us page (`About`)
+- Contact us page (`Contact`)
+- Spinner (loading) when receiving information from the server
+- Use `.env` file for API address and sensitive variables
+
+---
+
+### Technologies Used
+
+- React
+- Vite
+- Axios
+- Tailwind CSS
+- flowbite
+- React Router
+- .env
+
+---
+
+### Project Setup
+
+1. Clone the repository
+2. Run `npm install`
+3. Rename `.env.example` to `.env` and add environment values
+4. Run `npm run dev`
