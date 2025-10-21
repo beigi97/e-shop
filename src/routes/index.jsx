@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "./root";
 import Home, { loader as homeLoader } from "./Home";
 import ErrorPage from "../error-page/ErrorPage";
+import About from "./AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
         element: <Home />,
         loader: homeLoader,
       },
+      { path: "/about", element: <About /> },
     ],
   },
 ]);
