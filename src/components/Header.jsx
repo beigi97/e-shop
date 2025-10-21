@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getProducts } from "../api/products";
+import { Link } from "react-router-dom";
 
 export default function Header({
   setFilteredProducts,
   setSearchQuery,
+  cart,
+  setCart,
   setPage,
 }) {
   const [inputValue, setInputValue] = useState("");
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -20,7 +23,7 @@ export default function Header({
     const fetchSearchProducts = async () => {
       if (inputValue.trim() === "") {
         setFilteredProducts([]);
-        setPage(0);
+
         return;
       }
       try {
@@ -34,6 +37,10 @@ export default function Header({
 
     fetchSearchProducts();
   }, [inputValue]);
+
+  const removeFromCart = (id) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
   return (
     <header className="w-full bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
@@ -73,15 +80,18 @@ export default function Header({
               </div>
               <input
                 type="search"
+                placeholder="Search"
                 value={inputValue}
                 onChange={handleChange}
-                placeholder="Search"
                 className="block  p-4 ps-10 text-sm  border  rounded-lg bg-primary shadow-lg border-gray-200"
               />
             </div>
           </form>
 
-          <button className="relative">
+          <button
+            className="relative"
+            onClick={() => setIsCartOpen(!isCartOpen)}
+          >
             <svg
               className=" w-6 h-6 text-gray-700 hover:text-blue-500"
               fill="none"
@@ -99,9 +109,62 @@ export default function Header({
             </svg>
 
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              0
+              {cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
             </span>
           </button>
+          {isCartOpen && (
+            <>
+              <div
+                onClick={() => setIsCartOpen(false)}
+                className="fixed inset-0 bg-black/30 z-40"
+              ></div>
+              <div className="absolute right-0 top-0 mt-3 w-72 bg-white border rounded-xl shadow-lg p-4 z-50">
+                <h3 className="font-bold mb-2">سبد خرید</h3>
+
+                {cart.length === 0 ? (
+                  <p className="text-gray-500 text-sm">سبد خالی است</p>
+                ) : (
+                  <ul className="space-y-2 max-h-60 overflow-y-auto">
+                    {cart.map((item) => (
+                      <li
+                        key={item.id}
+                        className="flex items-center justify-between gap-2 border-b pb-2"
+                      >
+                        <img
+                          src={item.thumbnail}
+                          alt={item.title}
+                          className="w-12 h-12 object-cover rounded"
+                        />
+
+                        <div className="flex-1">
+                          <p className="text-sm font-semibold line-clamp-1">
+                            {item.title}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            تعداد: {item.quantity || 1}
+                          </p>
+                        </div>
+
+                        <span className="text-blue-600 font-bold text-sm">
+                          ${item.price * (item.quantity || 1)}
+                        </span>
+                        <button
+                          onClick={() => removeFromCart(item.id)}
+                          className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition"
+                        >
+                          حذف
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <button className="mt-3 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+                  ادامه خرید
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
