@@ -1,4 +1,4 @@
-# React Products App
+bbb# React Products App
 
 This project is a simple web application for displaying products, managing shopping carts, and searching that uses the DummyJSON site API.
 
@@ -23,6 +23,26 @@ This project is a simple web application for displaying products, managing shopp
 - Use `.env` file for API address and sensitive variables
 
 ---
+
+### Screenshots
+
+`Home Page`
+![Demo](src/assets/img/home.png)
+
+</br>
+
+`Pagination`
+![Demo](src/assets/img/pagination.png)
+
+</br>
+
+`Cart Page`
+![Demo](src/assets/img/cart.png)
+
+</br>
+
+`404 Page`
+![Demo](src/assets/img/404.png)
 
 ### Technologies Used
 
