@@ -89,7 +89,7 @@ export default function Header({
                 placeholder="Search"
                 value={inputValue}
                 onChange={handleChange}
-                className="block  p-4 ps-10 text-sm  border  rounded-lg bg-primary shadow-lg border-gray-200"
+                className="block  p-4 ps-10 text-sm  border  rounded-xl bg-primary shadow-lg border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 outline-none"
               />
             </div>
           </form>

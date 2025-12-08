@@ -32,7 +32,7 @@ export default function Contact() {
             value={form.name}
             onChange={handleChange}
             placeholder="Enter your name"
-            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400 outline-none"
             required
           />
         </div>
@@ -46,7 +46,7 @@ export default function Contact() {
             value={form.email}
             onChange={handleChange}
             placeholder="Enter your email"
-            className=" w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+            className=" w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-400 outline-none"
             required
           />
         </div>

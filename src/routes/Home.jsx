@@ -3,8 +3,8 @@ import { useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { useOutletContext } from "react-router-dom";
-import { Spinner } from "flowbite-react";
 import Banner from "../components/Banner";
+import { Spinner } from "@/components/ui/spinner";
 
 export async function loader() {
   const products = await getProducts();
@@ -69,7 +69,10 @@ export default function Home() {
       <Banner />
       {isLoading ? (
         <div className="text-center">
-          <Spinner aria-label="Center-aligned spinner example" />
+          <Spinner
+            aria-label="Center-aligned spinner example"
+            className={"text-blue-600 mx-auto w-8 h-8"}
+          />
           <p className="text-gray-500 text-center mt-6">در حال بارگذاری...</p>
         </div>
       ) : (
